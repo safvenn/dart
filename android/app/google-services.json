@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "131263845481",
+    "project_id": "message-29358",
+    "storage_bucket": "message-29358.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131263845481:android:26da2e4343ac38512dbef8",
+        "android_client_info": {
+          "package_name": "com.example.chitchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHL37ze7GzraOz_JbBlzLqxABa1c_4RYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131263845481:android:9c33d1b8dc730d212dbef8",
+        "android_client_info": {
+          "package_name": "com.example.crypto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHL37ze7GzraOz_JbBlzLqxABa1c_4RYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
