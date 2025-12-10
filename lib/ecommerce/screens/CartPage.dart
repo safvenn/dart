@@ -2,7 +2,7 @@ import 'package:crypto_app/ecommerce/provider/Cart_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:crypto_app/ecommerce/models/productmodel.dart';
+
 
 final uid = FirebaseAuth.instance.currentUser!.uid;
 
@@ -302,7 +302,7 @@ class Cartpage extends ConsumerWidget {
                 size: 22,
               ),
               onPressed: () {
-                ref.read(cartcontrollprpovider).removeCartitem(item.productId);
+                ref.read(cartcontrollprpovider).removeCartitem(item);
               },
             ),
           ],

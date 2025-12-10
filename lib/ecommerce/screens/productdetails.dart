@@ -1,7 +1,7 @@
 import 'package:crypto_app/ecommerce/models/cartmodel.dart';
 import 'package:crypto_app/ecommerce/models/productmodel.dart';
 import 'package:crypto_app/ecommerce/provider/Cart_Provider.dart';
-import 'package:crypto_app/ecommerce/screens/home.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
