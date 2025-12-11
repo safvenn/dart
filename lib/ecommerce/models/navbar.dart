@@ -1,4 +1,5 @@
 import 'package:crypto_app/ecommerce/screens/CartPage.dart';
+import 'package:crypto_app/ecommerce/screens/Profile.dart';
 import 'package:crypto_app/ecommerce/screens/home.dart';
 import 'package:crypto_app/ecommerce/screens/orderpage.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class Navbar extends ConsumerWidget {
         const Home(),
         const Cartpage(),
         const OrdersPage(),
+        const Profile(),
       ][ref.watch(NavProvider)],
       bottomNavigationBar: NavigationBar(
         destinations: [
@@ -34,6 +36,11 @@ class Navbar extends ConsumerWidget {
             icon: Icon(Icons.local_shipping),
             label: 'OrdersPage',
             selectedIcon: Icon(Icons.local_shipping_outlined),
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+            selectedIcon: Icon(Icons.person_outline),
           ),
         ],
         selectedIndex: ref.watch(NavProvider),

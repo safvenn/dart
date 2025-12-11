@@ -30,12 +30,10 @@ class CartRepository {
   }
 
   Future<void> clearCart(String uid) async {
-    await _db
-        .collection("users")
-        .doc(uid)
-        .collection("cartItems")
-        .doc(uid)
-        .delete();
+    final items = await getCartRef(uid).get();
+    for (final doc in items.docs) {
+      await doc.reference.delete();
+    };
   }
 
   Stream<List<CartItem>> watchCart(String uid) {

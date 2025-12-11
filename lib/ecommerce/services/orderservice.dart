@@ -55,8 +55,14 @@ class OrderService {
     return _firestore
         .collection("orders")
         .where('userId', isEqualTo: user.uid)
-        .orderBy('createdAt', descending: true)
         .snapshots()
-        .map((snapshot) => snapshot.docs.map((doc) => OrderModel.fromDoc(doc)).toList());
+        .map((snapshot) {
+          final orders = snapshot.docs
+              .map((doc) => OrderModel.fromDoc(doc))
+              .toList();
+          // Sort in client-side instead of Firestore
+          orders.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+          return orders;
+        });
   }
 }

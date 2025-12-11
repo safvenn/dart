@@ -30,9 +30,10 @@ class Authnotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> register(String email, String password) async {
+  Future<void> register(String email, String password ,String name) async {
     state = state.copyWith(isloading: true, error: null);
     try {
+      
       final cred = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -42,6 +43,7 @@ class Authnotifier extends StateNotifier<AuthState> {
           .doc(uid)
           .set(
             {"email": email,
+            "name": name,
             "createdAt": DateTime.now()}
           );
       state = state.copyWith(

@@ -81,10 +81,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage>
     if (!_formKey.currentState!.validate()) return;
     final email = _emailController.text.trim();
     final pass = _passController.text;
+    final name = _nameController.text.trim();
 
     // CALL YOUR BACKEND (do not change backend here).
     // If your Authnotifier.register signature differs, change this call accordingly.
-    await ref.read(authProvider.notifier).register(email, pass);
+    await ref.read(authProvider.notifier).register(email, pass, name);
 
     // show simple feedback — navigation or more complex handling should be done inside your notifier or via ref.listen
     final auth = ref.read(authProvider);

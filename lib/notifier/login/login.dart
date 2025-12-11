@@ -1,5 +1,6 @@
 // lib/screens/login_stylish.dart
 import 'package:crypto_app/ecommerce/screens/home.dart';
+import 'package:crypto_app/main.dart';
 
 import 'package:crypto_app/notifier/login/models/authmodel.dart';
 import 'package:crypto_app/notifier/login/register.dart';
@@ -54,7 +55,7 @@ class _LoginState extends ConsumerState<Login>
     final pass = _pass.text.trim();
     await ref.read(authProvider.notifier).login(email, pass);
     // ignore: use_build_context_synchronously
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) =>const Home()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) =>const my()));
   }
 
   @override
