@@ -1,4 +1,5 @@
 // lib/main.dart
+import 'package:crypto_app/ecommerce/models/navbar.dart';
 import 'package:crypto_app/ecommerce/screens/home.dart';
 import 'package:crypto_app/notifier/login/login.dart';
 import 'package:crypto_app/notifier/login/provider/Authnotifier.dart';
@@ -53,7 +54,7 @@ class my extends ConsumerWidget {
     return authstate.when(
       data: (user) {
         if (user != null) {
-          return Home();
+          return Navbar();
         } else {
           return Login();
         }

@@ -3,6 +3,7 @@ import 'package:crypto_app/ecommerce/provider/Cart_Provider.dart';
 import 'package:crypto_app/ecommerce/provider/CatogoryProvider.dart';
 import 'package:crypto_app/ecommerce/provider/FillteredProductsProvider.dart';
 import 'package:crypto_app/ecommerce/screens/CartPage.dart';
+import 'package:crypto_app/ecommerce/screens/orderpage.dart';
 import 'package:crypto_app/ecommerce/screens/productdetails.dart';
 import 'package:crypto_app/notifier/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,11 +14,18 @@ import 'package:flutter_riverpod/legacy.dart';
 final searchprovider = StateProvider<String>((ref) => "");
 final uid = FirebaseAuth.instance.currentUser!.uid;
 
-class Home extends ConsumerWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<Home> createState() => _HomeState();
+}
+
+class _HomeState extends ConsumerState<Home> {
+  int _selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
     final cart = ref.watch(userCartProvider);
     final selectedcatogy = ref.watch(selectedcatogoryProvider);
     final categories = ref.watch(categoriesProvider);
@@ -44,7 +52,7 @@ class Home extends ConsumerWidget {
                 MaterialPageRoute(builder: (_) => Cartpage()),
               );
             },
-            
+
             child: Stack(
               clipBehavior: Clip.none,
               children: [
@@ -53,7 +61,7 @@ class Home extends ConsumerWidget {
                   size: 26,
                   color: Colors.white,
                 ),
-                if (cart.requireValue.isNotEmpty)
+                if (cart.hasValue)
                   Positioned(
                     top: -8,
                     right: -8,
@@ -214,6 +222,7 @@ class Home extends ConsumerWidget {
           ),
         ),
       ),
+     
     );
   }
 

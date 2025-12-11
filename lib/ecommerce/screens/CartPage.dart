@@ -1,8 +1,8 @@
 import 'package:crypto_app/ecommerce/provider/Cart_Provider.dart';
+import 'package:crypto_app/ecommerce/provider/orderprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 final uid = FirebaseAuth.instance.currentUser!.uid;
 
@@ -15,7 +15,6 @@ class Cartpage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         backgroundColor: const Color(0xFF1a1a2e),
         title: const Text(
           'Shopping Cart',
@@ -24,10 +23,6 @@ class Cartpage extends ConsumerWidget {
             fontWeight: FontWeight.w700,
             color: Colors.white,
           ),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: Container(
@@ -118,14 +113,40 @@ class Cartpage extends ConsumerWidget {
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Proceeding to checkout...'),
-                                duration: Duration(milliseconds: 800),
-                              ),
-                            );
-                          },
+                          onPressed: data.isEmpty
+                              ? null
+                              : () async {
+                                  final orderservice = ref.watch(
+                                    orderserviceProvider,
+                                  );
+                                  try {
+                                    await orderservice.createOrderFromCart(
+                                      data,
+                                    );
+                                    if (context.mounted) {
+                                      ref
+                                          .read(cartcontrollprpovider)
+                                          .clearcart(uid);
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            "orderplaced succesfully...!",
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  } catch (e) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'failede to place order:$e',
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
                           child: const Text(
                             'Checkout',
                             style: TextStyle(

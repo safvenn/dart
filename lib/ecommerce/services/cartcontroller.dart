@@ -22,4 +22,8 @@ class Cartcontroller {
   Future<void> removeCartitem(CartItem product) async {
     await service.removecartitem(uid, product);
   }
+
+  Future<void> clearcart(String uid) async {
+    await service.clearCart(uid);
+  }
 }

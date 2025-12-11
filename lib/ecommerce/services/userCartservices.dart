@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_app/ecommerce/models/cartmodel.dart';
 
-
 class CartRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
@@ -28,6 +27,15 @@ class CartRepository {
 
   Future<void> removecartitem(String uid, CartItem product) async {
     await getCartRef(uid).doc(product.productId).delete();
+  }
+
+  Future<void> clearCart(String uid) async {
+    await _db
+        .collection("users")
+        .doc(uid)
+        .collection("cartItems")
+        .doc(uid)
+        .delete();
   }
 
   Stream<List<CartItem>> watchCart(String uid) {
