@@ -34,7 +34,6 @@ class _HomeState extends ConsumerState<Home> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        elevation: 0,
         backgroundColor: const Color(0xFF1a1a2e),
         title: const Text(
           'Shop',
@@ -92,6 +91,7 @@ class _HomeState extends ConsumerState<Home> {
           IconButton(
             onPressed: () {
               ref.read(authProvider.notifier).logout();
+               
             },
             icon: const Icon(Icons.logout_rounded, color: Colors.white),
             tooltip: 'Logout',

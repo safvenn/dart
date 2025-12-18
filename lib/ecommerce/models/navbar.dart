@@ -2,6 +2,7 @@ import 'package:crypto_app/ecommerce/screens/CartPage.dart';
 import 'package:crypto_app/ecommerce/screens/Profile.dart';
 import 'package:crypto_app/ecommerce/screens/home.dart';
 import 'package:crypto_app/ecommerce/screens/orderpage.dart';
+import 'package:crypto_app/notifier/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
@@ -13,6 +14,10 @@ class Navbar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final auth = ref.watch(authProvider);
+    if (auth.isAuthenticate == false) {
+      return const Login();
+    }
     return Scaffold(
       body: [
         const Home(),

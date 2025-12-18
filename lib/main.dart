@@ -1,8 +1,7 @@
 // lib/main.dart
+import 'package:crypto_app/ecommerce/admin/screens/dashboard.dart';
 import 'package:crypto_app/ecommerce/models/navbar.dart';
-import 'package:crypto_app/ecommerce/screens/home.dart';
 import 'package:crypto_app/notifier/login/login.dart';
-import 'package:crypto_app/notifier/login/provider/Authnotifier.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,17 +49,21 @@ class my extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authstate = ref.watch(authstateProvider);
-    return authstate.when(
-      data: (user) {
-        if (user != null) {
-          return Navbar();
-        } else {
-          return Login();
-        }
-      },
-      error: (err, stack) => Text('erorr'),
-      loading: () => CircularProgressIndicator(),
-    );
+    final auth = ref.watch(authProvider);
+    // Show a loading indicator while auth state is being resolved
+    if (auth.isloading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    // If authenticated, show Dashboard for admins, Navbar for regular users
+    if (auth.isAuthenticate == true) {
+      final isAdmin = auth.isAdmin ?? false;
+      return isAdmin ? const Dashboard() : const Navbar();
+    }
+
+    // Not authenticated -> show Login
+    return const Login();
   }
 }

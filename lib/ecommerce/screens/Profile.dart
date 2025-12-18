@@ -250,6 +250,7 @@ class Profile extends ConsumerWidget {
                         ),
                         onPressed: () {
                           ref.read(authProvider.notifier).logout();
+                        
                         },
                         child: const Text(
                           'Logout',

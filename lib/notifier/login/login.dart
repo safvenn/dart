@@ -1,4 +1,6 @@
 // lib/screens/login_stylish.dart
+import 'package:crypto_app/ecommerce/admin/screens/dashboard.dart';
+import 'package:crypto_app/ecommerce/models/navbar.dart';
 import 'package:crypto_app/ecommerce/screens/home.dart';
 import 'package:crypto_app/main.dart';
 
@@ -17,8 +19,6 @@ final authProvider = StateNotifierProvider<Authnotifier, AuthState>((ref) {
 final _formkey = GlobalKey<FormState>();
 final TextEditingController _email = TextEditingController();
 final TextEditingController _pass = TextEditingController();
-
-
 
 class Login extends ConsumerStatefulWidget {
   const Login({super.key});
@@ -47,21 +47,21 @@ class _LoginState extends ConsumerState<Login>
     super.dispose();
   }
 
-
   Future<void> _submitLogin() async {
-    
+    final auth = ref.watch(authProvider);
     if (!_formkey.currentState!.validate()) return;
     final email = _email.text.trim();
     final pass = _pass.text.trim();
     await ref.read(authProvider.notifier).login(email, pass);
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) =>const my()));
+
+    Navigator.of(
+      context,
+    ).pushReplacement(MaterialPageRoute(builder: (_) => const my()));
   }
 
   @override
   Widget build(BuildContext context) {
     final auth = ref.watch(authProvider);
-    
 
     return Scaffold(
       appBar: AppBar(title: const Text('Login'), centerTitle: true),

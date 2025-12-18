@@ -33,7 +33,7 @@ class CartRepository {
     final items = await getCartRef(uid).get();
     for (final doc in items.docs) {
       await doc.reference.delete();
-    };
+    }
   }
 
   Stream<List<CartItem>> watchCart(String uid) {
