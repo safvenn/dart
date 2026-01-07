@@ -1,5 +1,6 @@
 import 'package:crypto_app/ecommerce/admin/screens/AllOrders.dart';
 import 'package:crypto_app/ecommerce/admin/screens/adminproduct.dart';
+import 'package:crypto_app/ecommerce/admin/screens/analyticsPageSeparate.dart';
 import 'package:crypto_app/ecommerce/admin/screens/users.dart';
 import 'package:crypto_app/ecommerce/admin/services/allorders.dart';
 import 'package:crypto_app/notifier/login/login.dart';
@@ -87,7 +88,11 @@ class Dashboard extends ConsumerWidget {
                       subtitle: 'Recent orders',
                       icon: Icons.receipt_long,
                       color: Colors.deepOrange,
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AdminAllorders())),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const AdminAllorders(),
+                        ),
+                      ),
                     ),
                     _adminCard(
                       context,
@@ -95,7 +100,11 @@ class Dashboard extends ConsumerWidget {
                       subtitle: 'Sales & traffic',
                       icon: Icons.show_chart,
                       color: Colors.purple,
-                      onTap: () {},
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const AdminAnalyticsPage(),
+                        ),
+                      ),
                     ),
                   ],
                 ),

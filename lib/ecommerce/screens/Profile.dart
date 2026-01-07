@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto_app/ecommerce/admin/screens/analyticsPageSeparate.dart';
 import 'package:crypto_app/notifier/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -228,6 +229,18 @@ class Profile extends ConsumerWidget {
                             );
                           },
                         ),
+                        const SizedBox(height: 8),
+                        _buildSettingOption(
+                          icon: Icons.bar_chart_rounded,
+                          label: 'My Analytics',
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const UserAnalyticsPage(),
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -250,7 +263,6 @@ class Profile extends ConsumerWidget {
                         ),
                         onPressed: () {
                           ref.read(authProvider.notifier).logout();
-                        
                         },
                         child: const Text(
                           'Logout',
