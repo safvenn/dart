@@ -1,4 +1,4 @@
-# crypto
+# e-commerce app
 
 A new Flutter project.
 
